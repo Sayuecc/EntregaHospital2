@@ -1,0 +1,47 @@
+<h2>LISTADO DE CITAS MEDICAS</h2>
+<table>
+<thead>
+    <tr>
+    
+        <th>Cédula paciente</th>
+        <th>Cédula Medico</th>
+        <th>Especialidad</th>
+        <th>Fecha</th>
+        <th>Opciones</th>
+    </tr>
+</thead>
+<tbody>
+    {{#each citas}}
+    <tr>
+        <form action="/citas/actualizar/{{id}}" method="post">
+
+        <td><input type="number" id="cedula_paciente" name="cedula_paciente" value="{{id_paciente}}" disabled></td>
+
+        <td><input type="number" id="cedula" name="cedula" value="{{id_medico}}" disabled></td>
+
+        <td><input type="text" id="especialidad" name="especialidad" value="{{especialidad}}" disabled></td>
+
+        <td><input type="date" id="fecha" name="fecha" value="{{formatearFecha fecha}}"{{#ifCond @key '!=' ../claveSeleccionada}} {{../opcion}}{{/ifCond}}></td>
+
+        <td>        
+        <div class="botones">   
+
+        {{#if ../estado}}
+        <a class="button-38" href="/citas/eliminar/{{id}}"><i class="fa-solid fa-trash-can" style="color: #394867;"></i>Eliminar</a><br> 
+        <a class="button-38" href="/citas/enviar/{{@key}}"><i class="fa-solid fa-arrows-rotate" style="color: #394867;"></i>Modificar</a>
+        {{else}}
+        <input class="button-38" type="submit" value="Enviar">
+        {{/if}}
+        </div> 
+        </td>
+        </form>
+    </tr>
+    {{/each}}
+</tbody>
+</table>
+<div class="container-buttons">
+    <div class="buttons">
+        <a href="citas/agregar-cita" class="button-34">Agregar cita</a>
+        <a class="button-34" href="/">Volver</a>
+    </div>
+</div>

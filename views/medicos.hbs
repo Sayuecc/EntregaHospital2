@@ -1,0 +1,56 @@
+<h2>LISTADO DE DOCTORES</h2>
+<table>
+<thead>
+    <tr>
+        <th id="Cedula">Cédula</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th id="Especialidad">Especialidad</th>
+        <th id="Consultorio">Consultorio</th>
+        <th id="CorreoContacto">Correo de contacto</th>
+        <th>Opciones</th>
+    </tr>
+</thead>
+
+<tbody>
+    {{#each medicos}}
+    <form action="/medicos/actualizar/{{cedula}}" method="post">
+
+    <tr>
+        
+        <td><input type="text" inputmode="numeric" pattern="\d{8,10}" id="cedula" name="cedula" value="{{cedula}}" disabled></td>
+        <td><input type="text" id="nombres" name="nombres" value="{{nombres}}"{{#ifCond @key '!=' ../claveSeleccionada}} {{../opcion}}{{/ifCond}}></td>
+        <td><input type="text" id="apellidos" name="apellidos" value="{{apellidos}}"{{#ifCond @key '!=' ../claveSeleccionada}} {{../opcion}}{{/ifCond}}></td>
+        <td ><input type="text" id="especialidad" name="especialidad" value="{{especialidad}}"{{#ifCond @key '!=' ../claveSeleccionada}} {{../opcion}}{{/ifCond}}></td>
+        <td><input type="number" id="consultorio" name="consultorio" value="{{consultorio}}"{{#ifCond @key '!=' ../claveSeleccionada}} {{../opcion}}{{/ifCond}}></td>
+        <td><input type="email" pattern="\S+@\S+\.\S+" id="correo" name="correo" value="{{correo}}"{{#ifCond @key '!=' ../claveSeleccionada}} {{../opcion}}{{/ifCond}}></td>
+        <td>
+        <div class="botones"> 
+        {{#if ../estado}}
+        <!--boton eliminar-->
+        <a class="button-38" href="/medicos/eliminar/{{cedula}}"><i class="fa-solid fa-trash-can" style="color: #394867;"></i>Eliminar</a> <br>
+        <!--boton actualizar-->
+        <a class="button-38" href="/medicos/enviar/{{@key}}"><i class="fa-solid fa-arrows-rotate" style="color: #394867;"></i>Modificar</a>
+        {{else}}
+        
+            
+        <input class="button-38" type="submit" value="Enviar">
+        
+        
+
+        {{/if}}
+        </div>
+        </td>
+        </form>
+    </tr>
+    {{/each}}
+</tbody>
+</table>
+
+<div class="container-buttons">
+    <div class="buttons">
+        <a href="medicos/agregar-medico" class="button-34">Agregar doctor</a>
+        <a class="button-34" href="/">Volver</a>
+    </div>
+</div>
+

@@ -1,0 +1,50 @@
+<h2>LISTADO DE PACIENTES</h2>
+<table border="1">
+    <thead>
+        <tr>            
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Apellido</th>            
+            <th>Edad</th>
+            <th>Teléfono</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each pacientes}}
+    <tr>
+        <form action="/pacientes/actualizar/{{cedula_paciente}}" method="post">
+
+        <td><input type="text" inputmode="numeric" pattern="\d{8,10}" id="cedula_paciente" name="cedula_paciente"  value="{{cedula_paciente}}" disabled></td>
+        
+        <td><input type="text" id="nombre" name="nombre" pattern="^\\p{L}+$" value="{{nombre}}"{{#ifCond @key '!=' ../claveSeleccionada}} {{../opcion}}{{/ifCond}}></td>
+
+        <td><input type="text" id="apellido" name="apellido" pattern="^\\p{L}+$" value="{{apellido}}"{{#ifCond @key '!=' ../claveSeleccionada}} {{../opcion}}{{/ifCond}}></td>
+
+        <td><input type="number" id="edad" name="edad" value="{{edad}}"{{#ifCond @key '!=' ../claveSeleccionada}} {{../opcion}}{{/ifCond}}></td>
+        
+        <td><input type="number" id="telefono" name="telefono" value="{{telefono}}"{{#ifCond @key '!=' ../claveSeleccionada}} {{../opcion}}{{/ifCond}}></td>
+        <td>
+        <div class="botones"> 
+            {{#if ../estado}}
+                <!--boton eliminar-->
+                <a class="button-38" href="/pacientes/eliminar/{{cedula_paciente}}"><i class="fa-solid fa-trash-can" style="color: #394867;"></i>Eliminar</a> <br>
+                <!--boton actualizar-->
+                <a class="button-38" href="/pacientes/enviar/{{@key}}"><i class="fa-solid fa-arrows-rotate" style="color: #394867;"></i>Modificar</a>
+            {{else}}
+                <input class="button-38" type="submit" value="Enviar">
+            {{/if}}
+        </div>
+        </td>
+        </form>
+    </tr>
+    {{/each}}
+</tbody>
+</table>
+
+<div class="container-buttons">
+    <div class="buttons">
+        <a href="pacientes/agregar-paciente" class="button-34">Agregar paciente</a>
+        <a class="button-34" href="/">Volver</a>
+    </div>
+</div>

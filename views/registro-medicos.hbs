@@ -1,0 +1,46 @@
+<main id="mainMedicos">
+<h2>Formulario registro de Doctores</h2>
+
+<div class="info"> 
+    <label for="cedula">Cédula</label>
+    <input type="text" inputmode="numeric" pattern="\d{8,10}" id="cedula" name="cedula" required>
+</div>
+
+<div class="info">
+    <label for="nombres">Nombre</label>
+    <input type="text" pattern="[a-zA-Z\s]+" id="nombres" name="nombres" required>
+</div>
+<div class="info">  
+    <label for="apellidos">Apellido</label>
+    <input type="text" pattern="[a-zA-Z\s]+" id="apellidos" name="apellidos" required>
+</div>
+
+<div class="info">
+    <label for="especialidad">Especialidad requerida</label>
+    <select id="especialidad" name="especialidad" required>
+        <option value="">-----------------  Seleccione la especialidad  -----------------</option>
+            {{#each especialidades}}
+            <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
+</div>
+
+<div class="info"> 
+    <label for="consultorio">Consultorio</label>
+    <input type="text" id="consultorio" name="consultorio" required>
+</div> 
+
+<div class="info"> 
+    <label for="correo">Correo electrónico</label>
+    <input type="email" pattern="\S+@\S+\.\S+" id="correo" name="correo">
+</div> 
+
+
+<div class="container-buttons">
+    <div class="buttons">
+        <input type="submit" class="button-34" value="Enviar">
+        <a class="button-34" id="volver" href="/medicos">Volver</a>
+    </div>
+</div>
+
+</main>    
